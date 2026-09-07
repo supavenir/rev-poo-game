@@ -8,7 +8,11 @@ public class Personnage {
 		System.out.println("Bonjour, je suis "+nom);
 	}
 	
-	public void definirNom(String nom) {
+	public void setNom(String nom) {
 		this.nom=nom;
+	}
+	
+	public String getNom() {
+		return nom;
 	}
 }

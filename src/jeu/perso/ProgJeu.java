@@ -6,7 +6,7 @@ public class ProgJeu {
 	public static void main(String[] args) {
 		Personnage p = new Personnage();
 		p.saluer();
-		p.definirNom("Arthur");
+		p.setNom("Arthur");
 		p.saluer();
 	}
 }
