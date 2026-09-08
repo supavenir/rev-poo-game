@@ -5,10 +5,12 @@ import jeu.perso.entities.Personnage;
 
 public class ProgJeu {
 	public static void main(String[] args) {
+		
+		Personnage.maxPointDevie=20;
+		
 		Personnage p = new Personnage();
 		p.saluer();
-		p.setNom("Arthur");
-		p.saluer();
 		p.prendre(new Fiole());
+		p.boire();
 	}
 }

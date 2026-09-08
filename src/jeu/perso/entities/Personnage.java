@@ -6,11 +6,22 @@ import java.util.List;
 public class Personnage {
 	private String nom;
 	private int pointDevie;
-	private int maxPointDevie=15;
+	public static int maxPointDevie=15;
 	private List<Fiole> sac;
 	
+	
 	public Personnage() {
-		this.sac = new ArrayList<Fiole>();
+		this("No name");
+	}
+	
+	public Personnage(String nom) {
+		this(nom,maxPointDevie);
+	}
+	
+	public Personnage (String nom, int pv) {
+		this.sac= new ArrayList<Fiole>();
+		this.pointDevie=pv;
+		this.nom=nom;		
 	}
 	
 	public void saluer() {
@@ -26,13 +37,31 @@ public class Personnage {
 	}
 	
 	public String getNom() {
-		return this.nom;
+		return nom;
 	}
 	
 	public int getPointDevie() {
 		return this.pointDevie;
 	}
 	
+	/**
+	 * Boit un pv à partir d'une fiole de son sac
+	 * @return vrai si la quantité a été bue
+	 */
+	public boolean boire() {
+		return false;
+	}
+	
+	/**
+	 * Boit une certaine quantité de pv à partir d'une fiole de son sac
+	 * @param quantite la quantité bue
+	 * @return vrai si la quantité a été bue
+	 */
+	public boolean boire(int quantite) {
+		return false;
+	}
+	
+		
 	public void boire(Fiole fiole,boolean force) {
 		if(force) {
 			pointDevie+=fiole.getPointDeVie();
