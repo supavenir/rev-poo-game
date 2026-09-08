@@ -1,5 +1,6 @@
 package jeu.perso;
 
+import jeu.perso.entities.Fiole;
 import jeu.perso.entities.Personnage;
 
 public class ProgJeu {
@@ -8,5 +9,6 @@ public class ProgJeu {
 		p.saluer();
 		p.setNom("Arthur");
 		p.saluer();
+		p.prendre(new Fiole());
 	}
 }
