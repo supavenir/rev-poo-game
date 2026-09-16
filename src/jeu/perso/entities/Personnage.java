@@ -1,13 +1,10 @@
 package jeu.perso.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Personnage {
 	private String nom;
 	private int pointDevie;
 	public static int maxPointDevie = 15;
-	private List<Fiole> sac;
+	private Sac sac;
 
 	public Personnage() {
 		this("No name");
@@ -18,7 +15,7 @@ public class Personnage {
 	}
 
 	public Personnage(String nom, int pv) {
-		this.sac = new ArrayList<Fiole>();
+		this.sac = new Sac();
 		this.pointDevie = pv;
 		this.nom = nom;
 	}
@@ -27,8 +24,8 @@ public class Personnage {
 		System.out.println("Bonjour, je suis " + nom);
 	}
 
-	public void prendre(Fiole fiole) {
-		sac.add(fiole);
+	public void prendre(Objet o) {
+		sac.ajouter(o);
 	}
 
 	public void setNom(String nom) {
@@ -39,8 +36,20 @@ public class Personnage {
 		return nom;
 	}
 
-	public List<Fiole> getSac() {
+	public Sac getSac() {
 		return sac;
+	}
+
+	public void attaquer(Personnage autrePerso, Arme arme) {
+		arme.utiliser(autrePerso);
+	}
+
+	public boolean estVivant() {
+		return pointDevie > 0;
+	}
+
+	public void subirDegats(int degats) {
+		setPointDevie(pointDevie - degats);
 	}
 
 	public int getPointDevie() {
@@ -51,8 +60,10 @@ public class Personnage {
 	 * Boit un pv à partir d'une fiole de son sac
 	 */
 	private void setPointDevie(int pointDevie) {
-		if (pointDevie < 0)
+		if (pointDevie < 0) {
+			this.pointDevie = 0;
 			return;
+		}
 		if (pointDevie > maxPointDevie) {
 			this.pointDevie = maxPointDevie;
 			return;
@@ -103,12 +114,12 @@ public class Personnage {
 				} else {
 					setPointDevie(maxPointDevie);
 					fiole.setPointDeVie(fiole.getPointDeVie() - lack);
-					sac.add(fiole);
+					sac.ajouter(fiole);
 				}
 			} else {
 				// Il ne manque aucun pv au personnage
 				// il met juste la fiole dans son sac.
-				sac.add(fiole);
+				sac.ajouter(fiole);
 			}
 
 		}
